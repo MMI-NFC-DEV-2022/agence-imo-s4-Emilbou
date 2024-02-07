@@ -3,8 +3,9 @@ import { ref } from "@vue/reactivity" ;
 import AfficheMaison from "@/components/AfficheMaison.vue" ;
 import { useRoute, useRouter } from 'vue-router/auto'
 import { supabase } from '@/supabase'
-const route = useRoute('/maisons/edit/[[id]]')
+const route = useRoute('/maisons/edit/[id]')
 const router = useRouter()
+const maison = ref({})
 
 
 // @ts-ignore
@@ -15,23 +16,22 @@ async function upsertMaison(dataForm, node) {
 console.log("data id :", data[0].id);
 
         node.setErrors([]);
-        router.push({ name: "/maisons/edit/[[id]]", params: { id: data[0].id } });
+        router.push({ name: "/maisons/edit/[id]", params: { id: data[0].id } });
     }
 
 }
 
-// if (route.params.id) {
-    //     // On charge les données de la maison
-    //     let { data, error } = await supabase
-    //         .from("Maisons")
-//         .select("*")
-//         .eq("id", route.params.id);
-//     if (error) console.log("n'a pas pu charger le table Maison :", error);
-//     else maison.value = (data as any[])[0];
-// }
+if (route.params.id) {
+        // On charge les données de la maison
+        let { data, error } = await supabase
+            .from("Maisons")
+        .select("*")
+        .eq("id", route.params.id);
+    if (error) console.log("n'a pas pu charger le table Maison :", error);
+    else maison.value = (data as any[])[0];
+}
 
 
-const maison = ref({})
 </script>
 <template>
     <div>
