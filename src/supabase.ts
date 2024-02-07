@@ -6,7 +6,7 @@ console.log("affiche .env : ",supabaseUrl, supabaseAnonKey);
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-globalThis.supabase = supabase
+//globalThis.supabase = supabase
 
 const { data } = await supabase.auth.getUser()
 export const user = ref(data.user)

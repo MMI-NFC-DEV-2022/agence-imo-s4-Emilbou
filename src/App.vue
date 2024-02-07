@@ -12,7 +12,7 @@ import {Suspense} from 'vue'
       <RouterLink to="/about">About</RouterLink>
       <RouterLink to="/simple">Simple page</RouterLink>
       <RouterLink to="/offres/2">offre 2</RouterLink>
-      <RouterLink to="/maisons/edit/formkit">edit</RouterLink>
+      <RouterLink to="/maisons/edit/">edit</RouterLink>
       <RouterLink to="/login-logout">connexion</RouterLink>
       <RouterLink to="/maisons/">données supabase</RouterLink>
 
