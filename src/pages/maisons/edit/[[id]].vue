@@ -1,8 +1,20 @@
 <script setup lang="ts">
 import { ref } from "@vue/reactivity" ;
 import AfficheMaison from "@/components/AfficheMaison.vue" ;
-
+import { useRoute } from 'vue-router/auto'
+const route = useRoute('/maisons/edit/[[id]]')
 const maison = ref({})
+async function upsertMaison(dataForm, node) {
+    const { data, error } = await supabase.from("Maisons").upsert(dataForm);
+    if (error) node.setErrors([error.message])
+    else {
+        node.setErrors([]);
+        router.push({ name: "/maisons/edit/[[id]]", params: { id: data[0].id } });
+    }
+
+}
+
+
 </script>
 <template>
     <div>
@@ -11,7 +23,7 @@ const maison = ref({})
         <AfficheMaison v-bind="maison"/>
         </div>
         <div class="p—2">
-        <FormKit type="form" v-model="maison" :config="{
+        <FormKit @submit="upsertMaison" type="form" v-model="maison" :config="{
             classes: {
                 input: 'p-1 rounded border-gray-300 shadow-sm border',
                 label: 'text-gray-600 mb-12',

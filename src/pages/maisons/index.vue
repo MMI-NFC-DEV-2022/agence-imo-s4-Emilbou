@@ -6,7 +6,7 @@ import type { SchemaOffreMaison } from '@/types';
 
 console.log("supabase :", supabase); // pour vérifier et "garder" supabase dans le code
 
-let { data: Maisons, error } = await supabase
+const { data: Maisons, error } = await supabase
     .from('Maisons')
     .select('*')
 console.log(Maisons)
@@ -17,4 +17,5 @@ console.log(Maisons)
 
 <template>
     <h1>Bonjour</h1>
+    <AfficheMaison v-for="mesMaisons in Maisons" v-bind="mesMaisons"></AfficheMaison>
 </template>
