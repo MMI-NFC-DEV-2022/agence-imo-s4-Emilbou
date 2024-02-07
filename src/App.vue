@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import {Suspense} from 'vue'
 </script>
 
 <template>
@@ -9,8 +10,13 @@ import { RouterLink, RouterView } from 'vue-router'
     <nav class="*:text-red-500 flex flex-col">
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/about">About</RouterLink>
+      <RouterLink to="/simple">Simple page</RouterLink>
+      <RouterLink to="/offres/2">offre 2</RouterLink>
+
     </nav>
   </header>
 
-  <RouterView />
+  <Suspense>
+    <RouterView />
+  </Suspense>
 </template>

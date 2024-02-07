@@ -1,4 +1,7 @@
+import { plugin, defaultConfig } from "@formkit/vue";
+ 
 import './assets/main.css'
+
 
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -10,6 +13,7 @@ app.use(
   createRouter({
     history: createWebHistory()
   })
+  
 )
-
+app.use(plugin, defaultConfig);
 app.mount('#app')
