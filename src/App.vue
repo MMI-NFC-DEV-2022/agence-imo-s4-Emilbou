@@ -15,6 +15,8 @@ import {Suspense} from 'vue'
       <RouterLink to="/maisons/edit/">edit</RouterLink>
       <RouterLink to="/login-logout">connexion</RouterLink>
       <RouterLink to="/maisons/">données supabase</RouterLink>
+      <RouterLink to="/quartier">données supabase quartier avec groupby</RouterLink>
+      <RouterLink to="/quartier/edit/[id]">données quartier éditable</RouterLink>
 
     </nav>
   </header>
