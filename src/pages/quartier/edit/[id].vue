@@ -35,9 +35,26 @@ const { data: commune, error } = await supabase
     .select("*");
 if (error) console.log("n'a pas pu charger la table Commune :", error);
 // Les convertir par `map` en un tableau d'objets {value, label} pour FormKit
-const optionsCommune = listeCommune?.map((commune) => ({
-    label: commune.nom_commune,
+const optionsCommune = commune?.map((commune) => ({
+    label: commune.nomCommune,
 }));
+
+async function supprimerQuartier() {
+    const { data, error } = await supabase
+        .from("quartier")
+        .delete()
+        .match({ code_Quartier: quartierObject.value.code_Quartier });
+    if (error) {
+        console.error(
+            "Erreur à la suppression de ",
+            quartierObject.value,
+            "erreur :",
+            error
+        );
+    } else {
+        router.push("/quartier");
+    }
+}
 </script>
 <template>
     <div>
@@ -62,5 +79,10 @@ const optionsCommune = listeCommune?.map((commune) => ({
 
             </FormKit>
         </div>
+        <FormKit
+            type="select"
+            label="Commune"
+            :options="optionsCommune"
+          />
     </div>
 </template >
