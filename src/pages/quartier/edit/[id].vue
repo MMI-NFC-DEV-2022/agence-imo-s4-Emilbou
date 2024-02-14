@@ -30,7 +30,14 @@ if (route.params.id) {
     else quartier.value = (data as any[])[0];
 }
 
-
+const { data: commune, error } = await supabase
+    .from("commune")
+    .select("*");
+if (error) console.log("n'a pas pu charger la table Commune :", error);
+// Les convertir par `map` en un tableau d'objets {value, label} pour FormKit
+const optionsCommune = listeCommune?.map((commune) => ({
+    label: commune.nom_commune,
+}));
 </script>
 <template>
     <div>
