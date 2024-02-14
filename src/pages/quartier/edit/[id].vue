@@ -43,11 +43,11 @@ async function supprimerQuartier() {
     const { data, error } = await supabase
         .from("quartier")
         .delete()
-        .match({ code_Quartier: quartierObject.value.code_Quartier });
+        .match({ id: quartier.value.id });
     if (error) {
         console.error(
             "Erreur à la suppression de ",
-            quartierObject.value,
+            quartier.value,
             "erreur :",
             error
         );
@@ -84,5 +84,30 @@ async function supprimerQuartier() {
             label="Commune"
             :options="optionsCommune"
           />
+          <button
+            type="button"
+            v-if="quartier.id"
+            @click="($refs.dialogSupprimer as any).showModal()"
+            class="focus-style justify-self-end rounded-md bg-red-500 p-2 shadow-sm"
+          >
+            Supprimer l'offre
+          </button>
+          <dialog
+            ref="dialogSupprimer"
+            @click="($event.currentTarget as any).close()"
+          >
+            <button
+              type="button"
+              class="focus-style justify-self-end rounded-md bg-blue-300 p-2 shadow-sm"
+            >
+              Annuler</button
+            ><button
+              type="button"
+              @click="supprimerQuartier()"
+              class="focus-style rounded-md bg-red-500 p-2 shadow-sm"
+            >
+              Confirmer suppression
+            </button>
+          </dialog>
     </div>
 </template >
