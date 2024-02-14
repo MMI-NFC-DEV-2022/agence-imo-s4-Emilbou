@@ -26,7 +26,7 @@ if (route.params.id) {
         .from("quartier")
         .select("*")
         .eq("id", route.params.id);
-    if (error) console.log("n'a pas pu charger le table quartier :", error);
+    if (error) console.log("n'a pas pu charger la table quartier :", error);
     else quartier.value = (data as any[])[0];
 }
 
